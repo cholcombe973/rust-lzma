@@ -91,7 +91,8 @@ pub const LZMA_TELL_NO_CHECK: u32           = 0x01;
 pub const LZMA_TELL_UNSUPPORTED_CHECK: u32  = 0x02;
 pub const LZMA_TELL_ANY_CHECK: u32          = 0x04;
 
-
+#[cfg(target_os = "linux")]
+#[link(name = "lzma", kind="dylib")]
 extern {
 	pub fn lzma_easy_encoder(stream: *mut lzma_stream, preset: u32, check: lzma_check) -> lzma_ret;
 	pub fn lzma_code(stream: *mut lzma_stream, action: lzma_action) -> lzma_ret;
